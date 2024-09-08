@@ -3,16 +3,20 @@ import colors from 'colors';
 import 'dotenv/config';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
+import authRoutes from './routes/authRoute.js';
 
 // database config
 connectDB();
 
 //rest object creating FOR API CREATION
-const app = express()
+const app = express();
 
 // middlewares
-app.use(express.json())  // it makes sure our app can understand JOSN data
-app.use(morgan('dev'))  // it logs information about the incoming requests
+app.use(express.json());  // it makes sure our app can understand JOSN data
+app.use(morgan('dev'));  // it logs information about the incoming requests
+
+// routes
+app.use('/api/v1/auth' , authRoutes);
 
 //rest api's creation
 app.get('/', (req,res) => {
