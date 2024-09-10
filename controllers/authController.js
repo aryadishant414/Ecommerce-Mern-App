@@ -29,7 +29,7 @@ export const registerController = async (req,res) => {
         const existingUser = await userModel.findOne({email:email});
         if(existingUser) {
             return res.status(200).send({
-                success: true,
+                success: false,
                 message: 'Already registered please login',
             })
         }
